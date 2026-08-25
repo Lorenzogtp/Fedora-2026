@@ -1,0 +1,19 @@
+FEDORA 2026 APP v1.0
+
+Contenuto:
+- index.html
+- manifest.webmanifest
+- sw.js
+- icone 192 e 512 px
+
+Funzioni:
+- installabile come PWA se pubblicata via HTTPS
+- utilizzabile offline dopo il primo caricamento
+- dati operativi salvati localmente sul dispositivo
+- pulsante “Aggiorna app” per controllare nuove versioni pubblicate
+- backup/importazione dati già integrati
+
+Per aggiornare in futuro:
+1. sostituire i file pubblicati con la nuova versione;
+2. cambiare il nome CACHE in sw.js (es. fedora-2026-v1.1);
+3. gli aggiornamenti inseriti dall’utente restano in localStorage, salvo cancellazione dati del browser.
