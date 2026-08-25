@@ -1,4 +1,4 @@
-FEDORA 2026 APP v1.1
+FEDORA 2026 APP v1.2
 
 Contenuto:
 - index.html
@@ -19,3 +19,5 @@ Per aggiornare in futuro:
 3. gli aggiornamenti inseriti dall’utente restano in localStorage, salvo cancellazione dati del browser.
 
 Aggiornamento v1.1: inserita la nuova icona grafica Fedora dedicata.
+
+Aggiornamento v1.2: Piano prove completamente modificabile dall'app (aggiungi, modifica, elimina, ricerca e stampa). Oggi, Domani e Prossima attività leggono automaticamente il piano aggiornato.
