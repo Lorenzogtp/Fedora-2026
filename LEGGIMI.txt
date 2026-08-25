@@ -1,4 +1,4 @@
-FEDORA 2026 APP v1.0
+FEDORA 2026 APP v1.1
 
 Contenuto:
 - index.html
@@ -17,3 +17,5 @@ Per aggiornare in futuro:
 1. sostituire i file pubblicati con la nuova versione;
 2. cambiare il nome CACHE in sw.js (es. fedora-2026-v1.1);
 3. gli aggiornamenti inseriti dall’utente restano in localStorage, salvo cancellazione dati del browser.
+
+Aggiornamento v1.1: inserita la nuova icona grafica Fedora dedicata.
