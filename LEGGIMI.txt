@@ -1,23 +1,28 @@
-FEDORA 2026 APP v1.2
+FEDORA 2026 · PALCOSCENICO v2.0
 
-Contenuto:
-- index.html
-- manifest.webmanifest
-- sw.js
-- icone 192 e 512 px
+Questa versione riprende la struttura operativa dell'app Palcoscenico usata per L'Elisir d'amore.
 
-Funzioni:
-- installabile come PWA se pubblicata via HTTPS
-- utilizzabile offline dopo il primo caricamento
-- dati operativi salvati localmente sul dispositivo
-- pulsante “Aggiorna app” per controllare nuove versioni pubblicate
-- backup/importazione dati già integrati
+FUNZIONI
+- Home a riquadri operativi
+- Oggi e Domani
+- ODG Smart da piano prove
+- modalità ODG Solisti / Completo
+- Piano prove con data, orari, luogo, tipo attività e selezione solisti
+- Cast / Solisti
+- Camerini
+- Calendario dedicato Fedora
+- Condivisione giornata
+- Backup / Import completo
+- Export / Import produzione
+- dati salvati localmente sul dispositivo
+- modalità NO-SW per evitare problemi di cache su GitHub Pages / Android
 
-Per aggiornare in futuro:
-1. sostituire i file pubblicati con la nuova versione;
-2. cambiare il nome CACHE in sw.js (es. fedora-2026-v1.1);
-3. gli aggiornamenti inseriti dall’utente restano in localStorage, salvo cancellazione dati del browser.
+DATI GIÀ INSERITI
+- Piano Fedora 21 ottobre - 22 novembre 2026
+- 8 recite
+- cast principale noto
+- camerini lasciati modificabili e vuoti
 
-Aggiornamento v1.1: inserita la nuova icona grafica Fedora dedicata.
-
-Aggiornamento v1.2: Piano prove completamente modificabile dall'app (aggiungi, modifica, elimina, ricerca e stampa). Oggi, Domani e Prossima attività leggono automaticamente il piano aggiornato.
+PUBBLICAZIONE GITHUB
+Caricare TUTTI i file di questa cartella nel repository Fedora-2026, sostituendo index.html e manifest.
+Le icone hanno nomi nuovi (fedora-icon-v2-...) per forzare l'aggiornamento dell'icona.
