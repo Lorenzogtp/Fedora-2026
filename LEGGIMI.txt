@@ -1,4 +1,4 @@
-FEDORA 2026 · PALCOSCENICO v2.0
+FEDORA 2026 · PALCOSCENICO v2.1
 
 Questa versione riprende la struttura operativa dell'app Palcoscenico usata per L'Elisir d'amore.
 

@@ -32,7 +32,7 @@ input,textarea,select{width:100%;background:#101116;color:var(--text);border:1px
 </head>
 <body>
 <div class="wrap">
-<header><div class="brand"><div class="logo" aria-label="Fedora Palcoscenico"></div><div><h1>FENICE — PALCOSCENICO <span class="ver">Fedora v2.0</span></h1><div id="headDate" class="date"></div><div id="activeProdLabel" class="activeProd"></div><div id="status" class="status">Produzioni e piani prove salvati sul dispositivo</div></div></div></header>
+<header><div class="brand"><div class="logo" aria-label="Fedora Palcoscenico"></div><div><h1>FENICE — PALCOSCENICO <span class="ver">Fedora v2.1</span></h1><div id="headDate" class="date"></div><div id="activeProdLabel" class="activeProd"></div><div id="status" class="status">Produzioni e piani prove salvati sul dispositivo</div></div></div></header>
 
 <section class="grid">
 <button class="tile primary" onclick="openDay(0)"><span class="ico">🎭</span><b>OGGI</b><small>Piano della produzione attiva</small></button>
@@ -77,6 +77,7 @@ input,textarea,select{width:100%;background:#101116;color:var(--text);border:1px
 
 <section id="cast" class="panel">
 <h2>👤 Cast / Solisti</h2><div id="castProdName" class="sub"></div>
+<div id="fedoraPlaybill"></div>
 <div class="two"><div><label>Ruolo</label><input id="castRole" placeholder="Es. Adina"></div><div><label>Interprete</label><input id="castName" placeholder="Nome e cognome"></div></div>
 <div class="toolbar"><button class="action green" onclick="addCast()">Aggiungi</button></div><div id="castList"></div>
 </section>
@@ -98,41 +99,16 @@ input,textarea,select{width:100%;background:#101116;color:var(--text);border:1px
 <div class="notice">Per un nuovo piano ricevuto in PDF/Word può farlo trasformare nel file JSON di importazione e poi caricarlo qui, senza ricopiare gli orari.</div>
 </section>
 
-<div class="notice">Fedora v2.0 · Stessa struttura operativa dell’app Palcoscenico Elisir: Oggi, Domani, ODG Smart, Piano prove, Cast/Solisti, Camerini, Calendario Fedora, Backup/Import. Modalità NO-SW.</div>
+<div class="notice">Fedora v2.1 · Locandina completa, doppio cast e convocazioni delle otto recite. Restano disponibili Oggi, Domani, ODG Smart, Piano prove, Cast/Solisti, Camerini, Calendario Fedora, Backup/Import. Modalità NO-SW.</div>
 </div>
 <button class="fab" onclick="home()">⌂</button>
 
 <script>
+const K4='fedoraPalco2026V2',KOLD='fedoraPalco2026V1';
 const BOOTSTRAP={"activeProductionId":"prod-fedora-2026","productions":[{"id":"prod-fedora-2026","title":"Fedora","kind":"Opera","venue":"Teatro La Fenice","start":"2026-10-21","end":"2026-11-22","notes":"M° Donato Renzetti · 8 recite dal 13 al 22 novembre 2026","cast":[{"id":"cast-fedora-agresta","role":"Fedora Romazoff","name":"Maria Agresta"},{"id":"cast-fedora-stanisci","role":"Fedora Romazoff","name":"Rachele Stanisci"},{"id":"cast-loris-costanzo","role":"Loris Ipanov","name":"Vincenzo Costanzo"},{"id":"cast-loris-lagha","role":"Loris Ipanov","name":"Amadi Lagha"},{"id":"cast-olga","role":"Olga Sukarev","name":"Ekaterina Bakanova"},{"id":"cast-desiriex","role":"De Siriex","name":"Simone Piazzola"},{"id":"cast-desire","role":"Desiré / Barone Rouvel","name":"Carmine Riccio"},{"id":"cast-cirillo","role":"Cirillo","name":"Fabrizio Brancaccio"},{"id":"cast-boroff","role":"Boroff","name":"William Corrò"},{"id":"cast-grech","role":"Grech","name":"Adriano Gramigni"}],"rooms":[],"plan":[{"id":"fed-001","date":"2026-10-21","start":"15:00","end":"19:30","activity":"Incontro compagnia / musicale","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-002","date":"2026-10-22","start":"08:00","end":"14:00","activity":"Scarico allestimento in sottopalco / box","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-003","date":"2026-10-22","start":"10:00","end":"13:30","activity":"Prove musicali","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-004","date":"2026-10-22","start":"15:00","end":"18:30","activity":"Prove musicali","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-005","date":"2026-10-23","start":"08:00","end":"14:00","activity":"Scarico allestimento in sottopalco / box","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-006","date":"2026-10-23","start":"","end":"","activity":"Arrivo allestimento","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-007","date":"2026-10-23","start":"10:00","end":"13:30","activity":"Prova musicale","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-008","date":"2026-10-23","start":"15:00","end":"19:30","activity":"Prova di regia","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-009","date":"2026-10-24","start":"08:00","end":"20:00","activity":"Montaggio","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-010","date":"2026-10-24","start":"10:00","end":"13:45","activity":"Prova di regia","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-011","date":"2026-10-24","start":"14:45","end":"19:30","activity":"Prova di regia","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-012","date":"2026-10-25","start":"08:00","end":"14:00","activity":"Montaggio","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-013","date":"2026-10-25","start":"10:00","end":"13:30","activity":"Prova di regia","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-014","date":"2026-10-26","start":"","end":"","activity":"RIPOSO","place":"","audience":"all","castIds":[]},{"id":"fed-015","date":"2026-10-27","start":"08:00","end":"20:00","activity":"Montaggio","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-016","date":"2026-10-27","start":"10:00","end":"13:45","activity":"Prova di regia","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-017","date":"2026-10-27","start":"14:45","end":"19:30","activity":"Prova di regia","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-018","date":"2026-10-28","start":"08:00","end":"20:00","activity":"Montaggio","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-019","date":"2026-10-28","start":"10:00","end":"13:45","activity":"Prova di regia","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-020","date":"2026-10-28","start":"14:45","end":"19:30","activity":"Prova di regia","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-021","date":"2026-10-29","start":"08:00","end":"20:00","activity":"Montaggio","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-022","date":"2026-10-29","start":"10:00","end":"13:45","activity":"Prova di regia","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-023","date":"2026-10-29","start":"14:45","end":"19:30","activity":"Prova di regia","place":"Sala Esposizioni","audience":"cast","castIds":[]},{"id":"fed-024","date":"2026-10-30","start":"09:00","end":"13:30","activity":"Prova tecnica","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-025","date":"2026-10-30","start":"15:00","end":"19:30","activity":"Prova di regia","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-026","date":"2026-10-31","start":"10:00","end":"13:45","activity":"Prova di regia","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-027","date":"2026-10-31","start":"15:00","end":"18:30","activity":"Prova di regia","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-028","date":"2026-10-31","start":"18:45","end":"23:15","activity":"Preset luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-029","date":"2026-11-01","start":"","end":"","activity":"GIORNATA FESTIVA","place":"","audience":"all","castIds":[]},{"id":"fed-030","date":"2026-11-02","start":"","end":"","activity":"RIPOSO","place":"","audience":"all","castIds":[]},{"id":"fed-031","date":"2026-11-03","start":"10:00","end":"13:45","activity":"Prova di regia","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-032","date":"2026-11-03","start":"14:45","end":"18:00","activity":"Prova di regia + CORO","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-033","date":"2026-11-03","start":"18:15","end":"23:15","activity":"Prove luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-034","date":"2026-11-03","start":"15:00","end":"19:00","activity":"Letture orchestra — M° Renzetti","place":"Sala Esposizioni","audience":"all","castIds":[]},{"id":"fed-035","date":"2026-11-04","start":"10:00","end":"13:45","activity":"Prova di regia + CORO 10:30–13:30","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-036","date":"2026-11-04","start":"14:45","end":"18:00","activity":"Prova di regia","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-037","date":"2026-11-04","start":"18:15","end":"23:15","activity":"Prove luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-038","date":"2026-11-04","start":"10:30","end":"13:30","activity":"Letture orchestra — M° Renzetti","place":"Sala Esposizioni","audience":"all","castIds":[]},{"id":"fed-039","date":"2026-11-04","start":"15:00","end":"18:00","activity":"Letture orchestra — M° Renzetti","place":"Sala Esposizioni","audience":"all","castIds":[]},{"id":"fed-040","date":"2026-11-05","start":"10:30","end":"13:45","activity":"Prova di regia + CORO 11:45–13:30","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-041","date":"2026-11-05","start":"14:45","end":"18:00","activity":"Prova di regia + CORO 15:00–16:45","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-042","date":"2026-11-05","start":"18:15","end":"23:15","activity":"Prove luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-043","date":"2026-11-05","start":"10:30","end":"13:30","activity":"Letture orchestra — M° Renzetti","place":"Sala Esposizioni","audience":"all","castIds":[]},{"id":"fed-044","date":"2026-11-05","start":"15:00","end":"18:00","activity":"Letture orchestra — M° Renzetti","place":"Sala Esposizioni","audience":"all","castIds":[]},{"id":"fed-045","date":"2026-11-05","start":"18:30","end":"","activity":"Visita Danieli","place":"Teatro La Fenice","audience":"all","castIds":[]},{"id":"fed-046","date":"2026-11-06","start":"09:00","end":"13:45","activity":"Prove luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-047","date":"2026-11-06","start":"16:00","end":"20:00","activity":"Antepiano in costume / trucco / parrucco","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-048","date":"2026-11-07","start":"10:30","end":"13:30","activity":"Prova all’italiana — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-049","date":"2026-11-07","start":"15:00","end":"18:00","activity":"Prova in assieme — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-050","date":"2026-11-07","start":"18:15","end":"22:15","activity":"Prove luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-051","date":"2026-11-08","start":"10:00","end":"13:00","activity":"Prova in assieme — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-052","date":"2026-11-09","start":"09:00","end":"12:30","activity":"Prove luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-053","date":"2026-11-09","start":"15:00","end":"18:00","activity":"Prove luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-054","date":"2026-11-10","start":"10:30","end":"13:30","activity":"Prova in assieme — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-055","date":"2026-11-10","start":"15:00","end":"18:00","activity":"Prova in assieme — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-056","date":"2026-11-10","start":"18:15","end":"23:15","activity":"Prove luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-057","date":"2026-11-11","start":"09:00","end":"13:45","activity":"Prove luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-058","date":"2026-11-11","start":"15:30","end":"","activity":"Prova generale — 1ª compagnia (CHIUSA)","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-059","date":"2026-11-12","start":"09:00","end":"13:45","activity":"Prove luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-060","date":"2026-11-12","start":"15:30","end":"","activity":"Prova generale — 2ª compagnia (APERTA)","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-061","date":"2026-11-13","start":"09:00","end":"13:45","activity":"Prove luci","place":"Teatro La Fenice","audience":"technical","castIds":[]},{"id":"fed-062","date":"2026-11-13","start":"19:00","end":"","activity":"1ª RECITA — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-063","date":"2026-11-14","start":"15:30","end":"","activity":"2ª RECITA — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-064","date":"2026-11-15","start":"15:30","end":"","activity":"3ª RECITA — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-065","date":"2026-11-17","start":"19:00","end":"","activity":"4ª RECITA — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-066","date":"2026-11-18","start":"19:00","end":"","activity":"5ª RECITA — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-067","date":"2026-11-19","start":"19:00","end":"","activity":"6ª RECITA — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-068","date":"2026-11-20","start":"19:00","end":"","activity":"7ª RECITA — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]},{"id":"fed-069","date":"2026-11-21","start":"","end":"","activity":"GIORNATA FESTIVA","place":"","audience":"all","castIds":[]},{"id":"fed-070","date":"2026-11-22","start":"15:30","end":"","activity":"8ª RECITA — M° Renzetti","place":"Teatro La Fenice","audience":"cast","castIds":[]}]}],"notes":""};
-const CALENDAR=[["2026-10-21","","Incontro compagnia / musicale 15:00–19:30","","",""],["2026-10-22","Scarico allestimento in sottopalco / box 08:00–14:00","Prove musicali 10:00–13:30
-Prove musicali 15:00–18:30","","",""],["2026-10-23","Scarico allestimento in sottopalco / box 08:00–14:00
-Arrivo allestimento","Prova musicale 10:00–13:30
-Prova di regia 15:00–19:30","","",""],["2026-10-24","Montaggio 08:00–20:00","Prova di regia 10:00–13:45
-Prova di regia 14:45–19:30","","",""],["2026-10-25","Montaggio 08:00–14:00","Prova di regia 10:00–13:30","","",""],["2026-10-26","","","","",""],["2026-10-27","Montaggio 08:00–20:00","Prova di regia 10:00–13:45
-Prova di regia 14:45–19:30","","",""],["2026-10-28","Montaggio 08:00–20:00","Prova di regia 10:00–13:45
-Prova di regia 14:45–19:30","","",""],["2026-10-29","Montaggio 08:00–20:00","Prova di regia 10:00–13:45
-Prova di regia 14:45–19:30","","",""],["2026-10-30","Prova tecnica 09:00–13:30
-Prova di regia 15:00–19:30","","","",""],["2026-10-31","Prova di regia 10:00–13:45
-Prova di regia 15:00–18:30
-Preset luci 18:45–23:15","","","",""],["2026-11-01","","","","",""],["2026-11-02","","","","",""],["2026-11-03","Prova di regia 10:00–13:45
-Prova di regia + CORO 14:45–18:00
-Prove luci 18:15–23:15","Letture orchestra — M° Renzetti 15:00–19:00","","",""],["2026-11-04","Prova di regia + CORO 10:30–13:30 10:00–13:45
-Prova di regia 14:45–18:00
-Prove luci 18:15–23:15","Letture orchestra — M° Renzetti 10:30–13:30
-Letture orchestra — M° Renzetti 15:00–18:00","","",""],["2026-11-05","Prova di regia + CORO 11:45–13:30 10:30–13:45
-Prova di regia + CORO 15:00–16:45 14:45–18:00
-Prove luci 18:15–23:15
-Visita Danieli 18:30","Letture orchestra — M° Renzetti 10:30–13:30
-Letture orchestra — M° Renzetti 15:00–18:00","","",""],["2026-11-06","Prove luci 09:00–13:45
-Antepiano in costume / trucco / parrucco 16:00–20:00","","","",""],["2026-11-07","Prova all’italiana — M° Renzetti 10:30–13:30
-Prova in assieme — M° Renzetti 15:00–18:00
-Prove luci 18:15–22:15","","","",""],["2026-11-08","Prova in assieme — M° Renzetti 10:00–13:00","","","",""],["2026-11-09","Prove luci 09:00–12:30
-Prove luci 15:00–18:00","","","",""],["2026-11-10","Prova in assieme — M° Renzetti 10:30–13:30
-Prova in assieme — M° Renzetti 15:00–18:00
-Prove luci 18:15–23:15","","","",""],["2026-11-11","Prove luci 09:00–13:45
-Prova generale — 1ª compagnia (CHIUSA) 15:30","","","",""],["2026-11-12","Prove luci 09:00–13:45
-Prova generale — 2ª compagnia (APERTA) 15:30","","","",""],["2026-11-13","Prove luci 09:00–13:45
-1ª RECITA — M° Renzetti 19:00","","","",""],["2026-11-14","2ª RECITA — M° Renzetti 15:30","","","",""],["2026-11-15","3ª RECITA — M° Renzetti 15:30","","","",""],["2026-11-17","4ª RECITA — M° Renzetti 19:00","","","",""],["2026-11-18","5ª RECITA — M° Renzetti 19:00","","","",""],["2026-11-19","6ª RECITA — M° Renzetti 19:00","","","",""],["2026-11-20","7ª RECITA — M° Renzetti 19:00","","","",""],["2026-11-21","","","","",""],["2026-11-22","8ª RECITA — M° Renzetti 15:30","","","",""]];
+const CALENDAR=Object.entries(BOOTSTRAP.productions[0].plan.reduce((days,x)=>{
+ (days[x.date]??=[]).push(`${x.activity}${x.start?' '+x.start+(x.end?'–'+x.end:''):''}`);return days;
+},{})).sort(([a],[b])=>a.localeCompare(b)).map(([date,items])=>[date,items.join('\n'),'','','','']);
 let state=null;
 try{state=JSON.parse(localStorage.getItem(K4)||'null')}catch(e){}
 if(!state){
@@ -149,6 +125,40 @@ if(!state){
  localStorage.setItem(K4,JSON.stringify(state));
 }
 if(!state.productions?.length)state=structuredClone(BOOTSTRAP);
+// Fedora v2.1: locandina ufficiale, doppio cast e compagnie associate alle recite.
+try{
+ const p=(state.productions||[]).find(x=>x.id==='prod-fedora-2026'||(x.title||'').trim().toLowerCase()==='fedora');
+ if(p){
+  p.notes='M° Donato Renzetti · 8 recite dal 13 al 22 novembre 2026';
+  p.playbill={subtitle:'Opera in tre atti',music:'Umberto Giordano',libretto:'Arturo Colautti'};
+  p.credits=[
+   {role:'Direttore',name:'Donato Renzetti'},
+   {role:'Regia, scene e costumi',name:'Hugo de Ana'},
+   {role:'Luci',name:'Valerio Alfieri'},
+   {role:'Coreografia',name:'Michele Cosentino'}
+  ];
+  const official=[
+   {id:'cast-fedora-agresta',role:'Principessa Fedora Romazo',name:'Maria Agresta',dates:'13, 15, 18, 20, 22 novembre 2026'},
+   {id:'cast-fedora-stanisci',role:'Principessa Fedora Romazo',name:'Rachele Stanisci',dates:'14, 17, 19 novembre 2026'},
+   {id:'cast-olga',role:'Contessa Olga Sukarev',name:'Ekaterina Bakanova'},
+   {id:'cast-loris-costanzo',role:'Conte Loris Ipano',name:'Vincenzo Costanzo',dates:'13, 15, 18, 20, 22 novembre 2026'},
+   {id:'cast-loris-lagha',role:'Conte Loris Ipano',name:'Amadi Lagha',dates:'14, 17, 19 novembre 2026'},
+   {id:'cast-desiriex',role:'De Siriex',name:'Simone Piazzola'},
+   {id:'cast-desire',role:'Desiré e Barone Rouvel',name:'Carmine Riccio'},
+   {id:'cast-cirillo',role:'Cirillo',name:'Fabrizio Brancaccio'},
+   {id:'cast-boroff',role:'Borov',name:'William Corrò'},
+   {id:'cast-grech',role:'Grech',name:'Adriano Gramigni'}
+  ];
+  const officialIds=new Set(official.map(c=>c.id)),officialNames=new Set(official.map(c=>c.name.toLowerCase()));
+  const personal=(p.cast||[]).filter(c=>!officialIds.has(c.id)&&!officialNames.has((c.name||'').trim().toLowerCase()));
+  p.cast=[...official,...personal];
+  const companyA=['cast-fedora-agresta','cast-olga','cast-loris-costanzo','cast-desiriex','cast-desire','cast-cirillo','cast-boroff','cast-grech'];
+  const companyB=['cast-fedora-stanisci','cast-olga','cast-loris-lagha','cast-desiriex','cast-desire','cast-cirillo','cast-boroff','cast-grech'];
+  const castByDate={'2026-11-13':companyA,'2026-11-14':companyB,'2026-11-15':companyA,'2026-11-17':companyB,'2026-11-18':companyA,'2026-11-19':companyB,'2026-11-20':companyA,'2026-11-22':companyA};
+  for(const row of p.plan||[]){if(/recita/i.test(row.activity||'')&&castByDate[row.date])row.castIds=[...castByDate[row.date]];}
+  localStorage.setItem(K4,JSON.stringify(state));
+ }
+}catch(e){console.warn('Aggiornamento locandina Fedora v2.1',e)}
 // Fedora v2.0: sincronizza i dati ufficiali di Pagliacci anche sui dispositivi già utilizzati.
 // Mantiene eventuali elementi personali aggiunti dall'utente.
 try{
@@ -286,7 +296,12 @@ function renderPlan(){
 
 function addCast(){const p=activeProd(),role=document.getElementById('castRole').value.trim(),name=document.getElementById('castName').value.trim();if(!name)return;p.cast.push({id:uid('cast'),role,name});document.getElementById('castRole').value='';document.getElementById('castName').value='';save();renderCast()}
 function deleteCast(id){const p=activeProd();p.cast=p.cast.filter(x=>x.id!==id);p.plan.forEach(x=>x.castIds=(x.castIds||[]).filter(cid=>cid!==id));save();renderCast()}
-function renderCast(){const p=activeProd();document.getElementById('castProdName').textContent=`Produzione attiva: ${p.title}`;document.getElementById('castList').innerHTML=p.cast.length?p.cast.map(c=>`<div class="card castRow"><div><strong>${esc(c.name)}</strong><div class="small">${esc(c.role||'')}</div></div><button class="action alt" onclick="deleteCast('${c.id}')">×</button></div>`).join(''):'<div class="empty">Nessun solista inserito.</div>'}
+function renderCast(){
+ const p=activeProd(),pb=p.playbill||{},credits=Array.isArray(p.credits)?p.credits:[],playbill=document.getElementById('fedoraPlaybill');
+ document.getElementById('castProdName').textContent=`Produzione attiva: ${p.title}`;
+ playbill.innerHTML=`<div class="card" style="margin-top:14px"><div class="section" style="margin-top:0">LOCANDINA</div><h3 style="margin:8px 0 4px">FEDORA</h3><div>${esc(pb.subtitle||'Opera in tre atti')}</div><div class="small" style="margin-top:5px">Musica di <b>${esc(pb.music||'Umberto Giordano')}</b> · Libretto di <b>${esc(pb.libretto||'Arturo Colautti')}</b></div><div class="section">Direzione e team creativo</div>${credits.map(c=>`<div style="margin:8px 0">${esc(c.role)} · <b>${esc(c.name)}</b></div>`).join('')}</div>`;
+ document.getElementById('castList').innerHTML=p.cast.length?p.cast.map(c=>`<div class="card castRow"><div><strong>${esc(c.name)}</strong><div class="small">${esc(c.role||'')}</div>${c.dates?`<div class="small" style="margin-top:4px">📅 ${esc(c.dates)}</div>`:''}</div><button class="action alt" onclick="deleteCast('${c.id}')">×</button></div>`).join(''):'<div class="empty">Nessun solista inserito.</div>'
+}
 
 function addRoom(){const p=activeProd(),who=document.getElementById('roomWho').value.trim(),room=document.getElementById('roomNo').value.trim();if(!who)return;p.rooms.push({room,who});document.getElementById('roomWho').value='';document.getElementById('roomNo').value='';save();renderRooms()}
 function deleteRoom(i){activeProd().rooms.splice(i,1);save();renderRooms()}
